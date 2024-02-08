@@ -1,4 +1,6 @@
 # Prerequisites
+fractol
+.vscode/
 *.d
 .DS_Store
 temp/
