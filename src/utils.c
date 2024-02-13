@@ -1,4 +1,5 @@
 #include <fractol.h>
+#include <math.h>
 
 /* 
 	[0 .. 799] -> [-2 .. +2] 
@@ -29,5 +30,12 @@ t_complex square_complex(t_complex z)
 	return result;
 }
 
+t_complex square_complex_abs(t_complex z)
+{
+	t_complex result;
 
-
+	result.x = (z.x * z.x) - (z.y * z.y);
+	result.y = fabs(2 * z.x * z.y);
+	
+	return result;
+}

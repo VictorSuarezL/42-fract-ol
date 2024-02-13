@@ -56,7 +56,6 @@ typedef struct s_fractal
 	uint32_t	palette[ITER];
 	double julia_x;
 	double julia_y;
-	// HOOK VARIABLES TODO
 	bool render;
 	double shift_x;
 	double shift_y;
@@ -65,7 +64,6 @@ typedef struct s_fractal
 	int32_t mouse_y;
 
 } t_fractal;
-
 
 typedef struct s_data
 {
@@ -82,15 +80,24 @@ typedef struct s_complex
 	double y;
 } t_complex;
 
-// FUNCTIONS:
+// RENDER:
+void fractal_render(t_fractal *fractal);
+void render(void *param);
+
+//HOOKS:
+void my_keyhook(mlx_key_data_t keydata, void *param);
+void my_scrollhook(double xdelta, double ydelta, void *param);
+void close_program(void *param);
+
+//COLOR:
+void init_color_palette(t_fractal *data);
+void shift_palette(t_fractal *fractal);
 
 // UTILS:
-// void get_set(t_fractal *f, char **av);
 double rescale(double unscaled_num, double new_min, double new_max, double old_min, double old_max);
-
 t_complex sum_complex(t_complex z1, t_complex z2);
-
 t_complex square_complex(t_complex z);
+t_complex square_complex_abs(t_complex z);
 
-double ft_atod(char *str);
+// double ft_atod(char *str);
 #endif

@@ -1,15 +1,21 @@
-NAME	:= fractol
+NAME	= fractol
 #CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
-LIBMLX	:= ./lib/MLX42
+LIBMLX	= ./lib/MLX42
 CC = gcc
 LIBFT_SRC = ./lib/libft/
 LIBFT = libft.a
-HEADERS	:= -I ./includes -I $(LIBMLX)/include -I $(LIBFT_SRC)
-LIBS	:= $(LIBFT_SRC)$(LIBFT) $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -framework OpenGL -framework AppKit
-SRCS	:= $(shell find ./src -iname "*.c")
-OBJS	:= ${SRCS:.c=.o}
+HEADERS	= -I ./includes -I $(LIBMLX)/include -I $(LIBFT_SRC)
+LIBS	= $(LIBFT_SRC)$(LIBFT) $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -framework OpenGL -framework AppKit
 
-# SRCS := src/main.c
+SRCS	= $(shell find ./src -iname "*.c")
+
+# SRCS := src/main.c \
+# 		src/utils.c \
+# 		src/color.c \
+# 		src/render.c \
+# 		src/hooks.c \
+
+OBJS	= ${SRCS:.c=.o}
 
 # OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(notdir $(SRC_FILES)))
 
