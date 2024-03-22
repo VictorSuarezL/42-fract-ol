@@ -6,7 +6,7 @@
 /*   By: vsanz-su <vsanz-su@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:45:47 by vsanz-su          #+#    #+#             */
-/*   Updated: 2024/03/11 16:53:10 by vsanz-su         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:37:54 by vsanz-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void	mouse_position(t_fractal *fractal)
 {
 	int32_t	x;
 	int32_t	y;
-
+	// int	x;
+	// int	y;
 	mlx_get_mouse_pos(fractal->mlx, &x, &y);
 	// if (x < 0)
 	// 	x = 0;
@@ -47,15 +48,17 @@ static void	mouse_position(t_fractal *fractal)
 	// 	y = 0;
 	// else if (y > HEIGHT)
 	// 	y = HEIGHT;
-	fractal->mouse_x = rescale(x, -2, 2, WIDTH);
-	fractal->mouse_y = rescale(y, -2, 2, HEIGHT);
+	fractal->mouse_x = rescale((double)x, -2, 2, WIDTH);
+	fractal->mouse_y = rescale((double)y, -2, 2, HEIGHT);
 	int32_t dx;
 	int32_t dy;
 	dx = fractal->mouse_x - fractal->shift_x * fractal->zoom;
 	dy = fractal->mouse_y - fractal->shift_y * fractal->zoom;
 	fractal->shift_x += dx * fractal->zoom;
 	fractal->shift_y += dy * fractal->zoom;
-	printf("x = %i y = %i\nmouse_x = %i mouse_y = %i\n", x, y, fractal->mouse_x,
+	// printf("--------------\nx = %i y = %i\nmouse_x = %i mouse_y = %i\n", x, y, fractal->mouse_x,
+	// 	fractal->mouse_y);
+	printf("--------------\nx = %d y = %d\nmouse_x = %f mouse_y = %f\n", x, y, fractal->mouse_x,
 		fractal->mouse_y);
 }
 
@@ -66,9 +69,9 @@ void	my_scrollhook(double xdelta, double ydelta, void *param)
 	(void)xdelta;
 	fractal = (t_fractal *)param;
 	if (ydelta > 0)
-		fractal->zoom /= 1.003;
+		fractal->zoom /= 1.03;
 	else if (ydelta < 0)
-		fractal->zoom *= 1.003;
+		fractal->zoom *= 1.03;
 	mouse_position(fractal);
 	fractal->render = true;
 }
